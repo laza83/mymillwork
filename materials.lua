@@ -1,6 +1,9 @@
 local nici = 1
 -- Default Materials
 
+
+-- STONE --------------------------------------------------------------------------------
+
 --default:stone
 mymillwork.register("default:stone",
     "default_stone",
@@ -71,6 +74,9 @@ mymillwork.register("default:desert_stone_block",
     "default_desert_stone_block.png",
     {cracky = 2, stone = 1, not_in_creative_inventory = nici}
 )
+
+
+-- SANDSTONE -----------------------------------------------------------------------------
 
 --default:sandstone
 mymillwork.register("default:sandstone",
@@ -144,29 +150,8 @@ mymillwork.register("default:silver_sandstone_block",
     {cracky  =  2, not_in_creative_inventory = nici}
 )
 
---default:obsidian
-mymillwork.register("default:obsidian",
-    "default_obsidian",
-    "Obsidian",
-    "default_obsidian.png",
-    {cracky = 1, level = 2, not_in_creative_inventory = nici}
-)
 
---default:obsidianbrick
-mymillwork.register("default:obsidianbrick",
-    "default_obsidian_brick",
-    "Obsidian Brick",
-    "default_obsidian_brick.png",
-    {cracky = 1, level = 2, not_in_creative_inventory = nici}
-)
-
---default:obsidian_block
-mymillwork.register("default:obsidian_block",
-    "default_obsidian_block",
-    "Obsidian Block",
-    "default_obsidian_block.png",
-    {cracky = 1, level = 2, not_in_creative_inventory = nici}
-)
+-- CLAY ----------------------------------------------------------------------------------
 
 --default:clay
 mymillwork.register("default:clay",
@@ -176,23 +161,58 @@ mymillwork.register("default:clay",
     {crumbly = 3, not_in_creative_inventory = nici}
 )
 
---default:snow
+-- full bakedclay assortment
+if minetest.get_modpath("bakedclay") then
+	
+	local clay = {
+		{"white", "White"},
+		{"grey", "Grey"},
+		{"black", "Black"},
+		{"red", "Red"},
+		{"yellow", "Yellow"},
+		{"green", "Green"},
+		{"cyan", "Cyan"},
+		{"blue", "Blue"},
+		{"magenta", "Magenta"},
+		{"orange", "Orange"},
+		{"violet", "Violet"},
+		{"brown", "Brown"},
+		{"pink", "Pink"},
+		{"dark_grey", "Dark Grey"},
+		{"dark_green", "Dark Green"},
+	}
 
---default:snowblock
-mymillwork.register("default:snowblock",
-    "default_snowblock",
-    "Snow Block",
-    "default_snow.png",
-    {crumbly = 3, not_in_creative_inventory = nici}
-)
+	for _,c in ipairs(clay) do
+		mymillwork.register("bakedclay:" .. c[1],
+		    "bakedclay_" .. c[1],
+		    c[2] .. " Clay",
+		    "baked_clay_" .. c[1] .. ".png",
+		    {crumbly = 3, not_in_creative_inventory = nici}
+		)
+	end
 
---default:ice
-mymillwork.register("default:ice",
-    "default_ice",
-    "Ice",
-    "default_ice.png",
-    {crumbly = 3, not_in_creative_inventory = nici}
-)
+-- 3 types of bakedclay present in ethereal
+elseif minetest.get_modpath("ethereal") then
+	
+	local clay = {
+		{"grey", "Grey"},
+		{"red", "Red"},
+		{"yellow", "Yellow"},
+	}
+
+	for _,c in ipairs(clay) do
+		mymillwork.register("bakedclay:" .. c[1],
+		    "bakedclay_" .. c[1],
+		    c[2] .. " Clay",
+		    "baked_clay_" .. c[1] .. ".png",
+		    {crumbly = 3, not_in_creative_inventory = nici}
+		)
+	end
+
+end
+
+
+-- WOOD ----------------------------------------------------------------------------------
 
 --default:tree
 mymillwork.register("default:tree",
@@ -274,6 +294,59 @@ mymillwork.register("default:aspen_wood",
     {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1, not_in_creative_inventory = nici}
 )
 
+	
+-- BRICKS --------------------------------------------------------------------------------
+
+--default:brick
+mymillwork.register("default:brick",
+    "default_brick",
+    "Brick",
+    "default_brick.png",
+    {cracky = 3, not_in_creative_inventory = nici}
+)
+
+if minetest.get_modpath("moreblocks") then
+	
+	--moreblocks:cactus_brick
+	mymillwork.register("moreblocks:cactus_brick",
+    	"moreblocks_cactus_brick",
+    	"Cactus Brick",
+		"moreblocks_cactus_brick.png",
+    	{cracky = 3, not_in_creative_inventory = nici}
+	)
+
+	--moreblocks:grey_bricks
+	mymillwork.register("moreblocks:grey_bricks",
+    	"moreblocks_grey_bricks",
+    	"Grey Brick",
+		"moreblocks_grey_bricks.png",
+    	{cracky = 3, not_in_creative_inventory = nici}
+	)
+
+end
+
+
+-- SNOW & ICE ----------------------------------------------------------------------------
+
+--default:snowblock
+mymillwork.register("default:snowblock",
+    "default_snowblock",
+    "Snow Block",
+    "default_snow.png",
+    {crumbly = 3, not_in_creative_inventory = nici}
+)
+
+--default:ice
+mymillwork.register("default:ice",
+    "default_ice",
+    "Ice",
+    "default_ice.png",
+    {crumbly = 3, not_in_creative_inventory = nici}
+)
+
+
+-- METALS & Co ---------------------------------------------------------------------------
+
 --default:coalblock
 mymillwork.register("default:coalblock",
     "default_coal_block",
@@ -338,6 +411,33 @@ mymillwork.register("default:diamondblock",
     {cracky = 1, level = 3, not_in_creative_inventory = nici}
 )
 
+
+-- MISC ----------------------------------------------------------------------------------
+
+--default:obsidian
+mymillwork.register("default:obsidian",
+    "default_obsidian",
+    "Obsidian",
+    "default_obsidian.png",
+    {cracky = 1, level = 2, not_in_creative_inventory = nici}
+)
+
+--default:obsidianbrick
+mymillwork.register("default:obsidianbrick",
+    "default_obsidian_brick",
+    "Obsidian Brick",
+    "default_obsidian_brick.png",
+    {cracky = 1, level = 2, not_in_creative_inventory = nici}
+)
+
+--default:obsidian_block
+mymillwork.register("default:obsidian_block",
+    "default_obsidian_block",
+    "Obsidian Block",
+    "default_obsidian_block.png",
+    {cracky = 1, level = 2, not_in_creative_inventory = nici}
+)
+
 --default:glass
 mymillwork.register("default:glass",
     "default_glass",
@@ -354,10 +454,3 @@ mymillwork.register("default:obsidian_glass",
     {cracky = 3, oddly_breakable_by_hand = 3, not_in_creative_inventory = nici}
 )
 
---default:brick
-mymillwork.register("default:brick",
-    "default_brick",
-    "Brick",
-    "default_brick.png",
-    {cracky = 3, not_in_creative_inventory = nici}
-)
