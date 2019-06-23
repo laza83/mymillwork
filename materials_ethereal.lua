@@ -1,4 +1,4 @@
-local nici = 0
+local nici = 1
 
 if not minetest.get_modpath("bakedclay") then
 
